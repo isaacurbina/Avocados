@@ -13,6 +13,8 @@ struct RecipeCardView: View {
 	// MARK: - properties
 	
 	var recipe: Recipe
+	var hapticImpact = UIImpactFeedbackGenerator(style: .heavy)
+	@State private var showModal: Bool = false
 	
 	
 	// MARK: - body
@@ -89,6 +91,13 @@ struct RecipeCardView: View {
 			x: 0,
 			y: 0
 		)
+		.onTapGesture {
+			hapticImpact.impactOccurred()
+			showModal = true
+		}
+		.sheet(isPresented: $showModal) {
+			RecipeDetailView(recipe: recipe)
+		}
 	}
 }
 
