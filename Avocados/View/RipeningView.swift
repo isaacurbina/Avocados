@@ -12,6 +12,7 @@ struct RipeningView: View {
 	
 	// MARK: - properties
 	
+	var ripening: Ripening
 	@State private var slideInAnimation: Bool = false
 	
 	
@@ -19,7 +20,7 @@ struct RipeningView: View {
 	
 	var body: some View {
 		VStack {
-			Image("avocado-ripening-1")
+			Image(ripening.image)
 				.resizable()
 				.frame(width: 100, height: 100, alignment: .center)
 				.clipShape(Circle())
@@ -40,7 +41,7 @@ struct RipeningView: View {
 			VStack(alignment: .center, spacing: 10) {
 				// stage
 				VStack(alignment: .center, spacing: 0) {
-					Text("1")
+					Text(ripening.stage)
 						.font(.system(.largeTitle, design: .serif))
 						.fontWeight(.bold)
 					Text("STAGE")
@@ -52,7 +53,7 @@ struct RipeningView: View {
 				.frame(width: 180)
 				
 				// title
-				Text("Hard")
+				Text(ripening.title)
 					.font(.system(.title, design: .serif))
 					.fontWeight(.bold)
 					.foregroundColor(Color("ColorGreenMedium"))
@@ -73,14 +74,14 @@ struct RipeningView: View {
 				
 				// description
 				Spacer()
-				Text("Fresh off the tree, the avocado is very hard with no give.")
+				Text(ripening.description)
 					.foregroundColor(Color("ColorGreenDark"))
 					.fontWeight(.bold)
 					.lineLimit(nil)
 				Spacer()
 				
 				// ripeness
-				Text("5+ DAYS")
+				Text(ripening.ripeness)
 					.foregroundColor(.white)
 					.font(.system(.callout, design: .serif))
 					.fontWeight(.bold)
@@ -103,7 +104,7 @@ struct RipeningView: View {
 					)
 				
 				// instruction
-				Text("Hold avocados at room temperature until they are fully ripe.")
+				Text(ripening.instruction)
 					.font(.footnote)
 					.foregroundColor(Color("ColorGreenLight"))
 					.fontWeight(.bold)
@@ -136,5 +137,5 @@ struct RipeningView: View {
 // MARK: - preview
 
 #Preview {
-	RipeningView()
+	RipeningView(ripening: ripeningData[1])
 }
